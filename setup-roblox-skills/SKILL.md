@@ -19,7 +19,7 @@ This is a prompt-driven skill, not a script. Explore, ask a few short questions,
    - the **skill catalog** — every skill's one-line purpose, *use when*, and *trigger words*,
    - the **next-skill routing** convention: at the end of any skill, tell the user which skill to run next.
    The canonical block is [claude-block.md](claude-block.md) — inject it verbatim (trimming any skill folders this project doesn't have installed).
-2. `docs/agents/` config files: the tracker, the triage labels, and the UI design artifact layout.
+2. `docs/agents/` config files: the tracker, the triage labels, the UI design artifact layout, and the asset policy.
 
 ## Process
 
@@ -47,16 +47,24 @@ Assume the user may be new to this. Give a one-line explainer, then the choices 
 
 **C — UI design artifacts.** UI slices can't be built until an approved design brief exists (see `roblox-game-ux`). Confirm the layout (default: markdown briefs under `design/features/<feature-slug>/`, optionally with reference images/screenshots — Roblox UI is built in Studio, so these are specs, not HTML stylekits). Seed from [design-artifacts.md](design-artifacts.md).
 
+**D — Asset policy.** Decides who may create game art. Skills like `roblox-asset-pipeline` offer generation tools (`generate_mesh`, `generate_material`, `generate_procedural_model`), so this must be explicit. Options:
+- **Human-authored only (default when the project has a no-generation rule, e.g. Blockbench-only art)** — the agent never generates models, animations, textures, UI art, sounds, or map parts. It may script and wire up assets a human imported.
+- **Mixed** — generation allowed for listed categories only (e.g. placeholder geometry). Ask which categories.
+- **Generation allowed** — no restriction.
+
+Seed from [asset-policy.md](asset-policy.md).
+
 ### 3. Confirm
 
 Show the user a draft of the `## Roblox Skills` block and the `docs/agents/*.md` files. Let them edit before writing.
 
 ### 4. Write
 
-- If `CLAUDE.md` exists, edit it; if not, ask before creating one (don't also create `AGENTS.md` if the user prefers that — edit whichever they choose).
+- If `CLAUDE.md` exists, edit it. If not, create it at the project root. When the user has already asked for setup, don't stop to ask; report that it was created. (Don't also create `AGENTS.md`; edit whichever file the user already uses.)
 - If a `## Roblox Skills` block already exists, **update it in place** — don't append a duplicate, and don't clobber surrounding sections.
 - Inject the block from [claude-block.md](claude-block.md). Omit any skill whose folder isn't installed here rather than inventing it.
-- Write `docs/agents/tracker.md`, `docs/agents/triage-labels.md`, and `docs/agents/design.md` from the chosen seed files.
+- Write `docs/agents/tracker.md`, `docs/agents/triage-labels.md`, `docs/agents/design.md`, and `docs/agents/assets.md` from the chosen seed files.
+- If the project has a `ROADMAP.md`, leave it as-is; the tracker seed points to it.
 
 ### 5. Done
 

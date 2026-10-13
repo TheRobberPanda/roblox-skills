@@ -9,6 +9,14 @@ description: Plan and execute Roblox asset workflows. Use for Creator Store sear
 
 Choose assets that fit the game fantasy, load reliably, and stay within mobile performance budgets.
 
+## Project Asset Policy
+
+Before any generation step, read `docs/agents/assets.md` if it exists. Follow it over the defaults below.
+
+- If the policy says game art is human-authored, do not call `generate_mesh`, `generate_material`, `generate_procedural_model`, `store_image`, or `upload_image` for models, animations, textures, UI art, sounds, or map parts. Ask the human author for the asset instead, and wire up what they import.
+- Creator Store search and the security audit still apply under any policy.
+- If there is no policy file, ask the user before generating anything.
+
 ## Selection Order
 
 1. Search existing assets with `search_asset`.

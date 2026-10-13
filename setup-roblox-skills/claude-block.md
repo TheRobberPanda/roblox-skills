@@ -115,4 +115,5 @@ The game's Luau code and instances live in the **Roblox cloud experience** and a
 - **Tracker:** see `docs/agents/tracker.md`.
 - **Triage labels:** see `docs/agents/triage-labels.md`.
 - **UI design artifacts:** see `docs/agents/design.md`.
+- **Asset policy:** see `docs/agents/assets.md`. Read it before any asset generation call (`generate_mesh`, `generate_material`, `generate_procedural_model`, `store_image`, `upload_image`).
 - **Roadmap index:** `ROADMAP.md` — `[ ]` not started · `[~]` built & tested, awaiting approval · `[x]` built, playtested, and approved.
